@@ -1,0 +1,23 @@
+<h1>Details for <%= @surgery.title %></h1>
+
+<h4>Surgery ID: <%= @surgery.id %></h4>
+<h4>Operating Room: #<%= @surgery.room_number %></h4>
+<h4>Day of Week: <%= @surgery.day_of_week %></h4>
+
+<h4>Doctors:</h4>
+<ul>
+  <% @surgery.doctors.each do |doctor| %>
+    <li><%= doctor.name %></li>
+  <% end %>
+</ul>
+
+
+<section>
+  <h4>Add A Doctor To This Surgery</h4>
+  <%= form_with model: DoctorSurgery.new, local: true do |f| %>
+    <%= f.label :name, 'Name' %>
+    <%= f.text_field :name %>
+    <%= f.hidden_field :surgery_id, value: @surgery.id %>
+    <%= f.submit 'Add to Surgery' %>
+  <% end %>
+</section>
