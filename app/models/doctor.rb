@@ -13,14 +13,14 @@ class Doctor < ApplicationRecord
   end
 
 
-  # def self.most_experience
-  #   where(:practice > :average_experience)
-  #
-  # end
-  #
-  # def self.least_experience
-  #   where(:practice < :average_experience)
-  # end
+  def self.most_experience
+    order(practice: :desc).first
+
+  end
+
+  def self.least_experience
+    order(practice: :desc).last
+  end
 
   def self.search_name(name)
     find_by('name like ?', "%#{name}%")
